@@ -29,9 +29,9 @@ class Homepage extends Component{
                 {
                     this.props.bclick ?
                     <div>{
-                        this.props.movies.forEach((item)=>{
+                        this.props.movies.map((item)=>{
                             console.log(item)
-                            return (<p>{item[0].description}</p>)
+                            return (<p>{item.description}</p>)
                         })
                     }</div>:<p>O</p>
                 }

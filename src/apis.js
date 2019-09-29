@@ -9,8 +9,7 @@ export const getMovieList=(genre)=>new Promise(function(resolve,reject){
                     items.push(item.data())
                 }
             )
+            resolve(items)
         }
     )
-    resolve(items);
-    reject([])
 })
