@@ -41,8 +41,8 @@ class Homepage extends Component{
                         this.props.movies.map((item)=>{
                             return (<div style={{display:'inline-flex'}}>
                                 <ul style={{width:'250px',fontSize:'13px'}}><img src={item.image} style={{width:'150px',height:'200px',cursor:'pointer'}} onClick={()=>this.movie(item)} />
-                                <p style={{width:'200px',textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap',cursor:'pointer'}} onClick={()=>this.movie(item)} >{item.name}</p>
-                                <p style={{alignItems:'center',display:'inline-flex'}}><ThumbUpAltRounded onClick={()=>this.like(item)} style={{color:'blue'}}></ThumbUpAltRounded><p style={{marginLeft:'11px'}}>{item.likes}</p></p>
+                                <p style={{width:'200px',textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap',cursor:'pointer',marginBottom:'-10px'}} onClick={()=>this.movie(item)} >{item.name}</p>
+                                <p style={{alignItems:'center',display:'inline-flex'}}><ThumbUpAltRounded onClick={()=>this.like(item)} style={{color:'blue',cursor:'pointer'}}></ThumbUpAltRounded><p style={{marginLeft:'11px'}}>{item.likes}</p></p>
                                 </ul>
                             </div>)
                         })

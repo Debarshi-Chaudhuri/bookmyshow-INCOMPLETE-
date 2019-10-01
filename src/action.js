@@ -1,4 +1,4 @@
-import { getMovieList,likeMovie } from "./apis";
+import { getMovieList,likeMovie,bookMovie } from "./apis";
 export const genreClick=(genre)=>{
     return(dispatch)=>{
         getMovieList(genre).then(
@@ -13,8 +13,8 @@ export const likeClick=(movie)=>{
         )
     }
 }
-/*export const clickBookTicket=(movie)=>{
+export const clickBookTicket=(email)=>{
     return (dispatch)=>{
-        bookMovie(movie).then()
+        bookMovie(email)
     }
-}*/
+}

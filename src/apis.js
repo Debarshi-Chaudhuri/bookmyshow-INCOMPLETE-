@@ -33,6 +33,13 @@ export const likeMovie=(movie)=>new Promise(function(resolve,reject){
         )  
     )
 })
-export const bookMovie=(movie)=>new Promise(function(resolve,reject){
+export const bookMovie=(email)=>new Promise(function(resolve,reject){
     const auth=firebase.auth();
+    auth.createUserWithEmailAndPassword(`${email}`,'123456').then(
+        (data)=>{
+            console.log(data)
+            data.user.sendEmailVerification();
+            data.user.delete()
+        }
+    ).catch((error)=>alert('error'))
 })

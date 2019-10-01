@@ -1,34 +1,43 @@
 import React,{ Component } from "react";
-import { likeClick } from "../action.js";
+import { clickBookTicket } from "../action.js";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ThumbUpAltRounded from '@material-ui/icons/ThumbUpAltRounded';
 import { Button } from "@material-ui/core";
 import firebase from "../firebase";
 const mapDispatchToProps=(dispatch)=>{
-    return bindActionCreators({likeClick},dispatch)
+    return bindActionCreators({clickBookTicket},dispatch)
 }
 class Movie extends Component{
     constructor(props){
         super(props)
         this.movielist=this.props.location.state;
+        this.state={email:'',onclick:false}
     }
-    like=(item)=>{
-        this.props.likeClick(item)
+    change=(event)=>{
+        this.setState({email:event.target.value})
+    }
+    submit=(email)=>{
+        this.props.clickBookTicket(email);
+        this.setState({email:''})
     }
     book=()=>{
-        const auth=firebase.auth();
-        console.log(auth)
+        this.setState({onclick:true})
     }
     render(){
         return(
             <div>
                <div style={{display:'inline-flex'}}>
                     <ul style={{width:'250px',fontSize:'13px'}}><img src={this.movielist.image} style={{width:'150px',height:'200px',cursor:'pointer'}} />
-                    <p style={{width:'200px',textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap',cursor:'pointer'}}  >{this.movielist.name}</p>
-                    <p style={{alignItems:'center',display:'inline-flex'}}><ThumbUpAltRounded onClick={()=>this.like(this.movielist)} style={{color:'blue'}}></ThumbUpAltRounded><p style={{marginLeft:'11px'}}>{this.movielist.likes}</p></p>
+                    <h3 style={{width:'200px',textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap',cursor:'pointer',marginBottom:'-10px'}}  >{this.movielist.name}</h3>
                     <p style={{fontSize:'15px',width:'400px'}}>{this.movielist.description}</p>
                     <Button style={{backgroundColor:'blue',color:'white'}} onClick={this.book}>Book Tickets</Button>
+                    { this.state.onclick &&
+                    <div>
+                        <input type='email' style={{width:'200px',height:'30px'}} onChange={this.change} value={this.state.email} />
+                        <Button style={{backgroundColor:'blue',color:'white'}} onClick={()=>this.submit(this.state.email)}>Submit</Button>
+                    </div>
+                    }
                     </ul>
                 </div>
             </div>
